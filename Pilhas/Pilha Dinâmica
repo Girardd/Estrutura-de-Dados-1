@@ -90,7 +90,7 @@ int main() {
     Item *pilha = NULL;
 
     while (opcao != 0) {
-        exibir(pilha);
+        
         valor = 0;
         printf("\nDIGITE 0 PARA SAIR\n");
         printf("1: Inserir\n");
@@ -104,16 +104,19 @@ int main() {
                 printf("Digite um valor: ");
                 scanf("%d", &valor);
                 pilha = inserir(valor, pilha);
+                exibir(pilha);
                 break;
 
             case 2:
                 pilha = remover(pilha);
+                exibir(pilha);
                 break;
 
             case 3:
                 printf("Digite um valor: ");
                 scanf("%d", &valor);
                 pesquisar(valor, pilha);
+                exibir(pilha);
                 break;
 
             case 4:
