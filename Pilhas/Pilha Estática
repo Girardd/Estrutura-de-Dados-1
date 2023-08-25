@@ -113,7 +113,7 @@ void exibir(Pilha *pilha) {
 }
 
 int main() {
-    setlocale(LC_ALL, "Portguese");
+    setlocale(LC_ALL, "Portuguese");
     int opcao = -1;
     int valor = 0;
     Pilha pilha;
