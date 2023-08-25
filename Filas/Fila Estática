@@ -108,10 +108,12 @@ int main() {
                 printf("Digite um valor que será enfileirado: ");
                 scanf("%d", &valor);
                 enfileirar(&fila, valor);
+                exibir(&fila);
                 break;
 
             case 2:
                 desenfileirar(&fila);
+                exibir(&fila);
                 break;
 
             case 3:
