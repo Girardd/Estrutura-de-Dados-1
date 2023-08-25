@@ -1,3 +1,11 @@
+/*
+A definição de fila se dá como uma fila na vida real. Esta é uma fila circular estática, ou seja,
+possui um tamanho pré-definido e funciona de maneira circular.
+
+Autor: Vinícius Girard.
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #define TAM 5 // Define o tamanho da fila
