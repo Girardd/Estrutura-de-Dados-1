@@ -1,0 +1,161 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+// Definindo a estrutura do nó
+typedef struct Node {
+    int item;
+    struct Node *next;
+} NodeType;
+
+// Função para criar um novo nó
+NodeType* createNode(int value) {
+    NodeType *newNode = (NodeType*) malloc(sizeof(NodeType));
+    if (newNode == NULL) {
+        printf("\nErro ao criar item!\n");
+        return NULL;
+    }
+    newNode->item = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Função para inserir à esquerda (início)
+NodeType* insertLeft(int value, NodeType *list) {
+    NodeType *newNode = createNode(value);
+    if (list == NULL) {
+        return newNode;
+    } else {
+        newNode->next = list;
+        return newNode;
+    }
+}
+
+// Função para inserir à direita (final)
+NodeType* insertRight(int value, NodeType *list) {
+    NodeType *newNode = createNode(value);
+    if (list == NULL) {
+        return newNode;
+    } else {
+        NodeType *aux = list;
+        while (aux->next != NULL) {
+            aux = aux->next;
+        }
+        aux->next = newNode;
+        return list;
+    }
+}
+
+// Função para remover da esquerda (início)
+NodeType* removeLeft(NodeType *list) {
+    if (list == NULL) {
+        printf("\nVazia!\n");
+    } else {
+        NodeType *aux = list;
+        list = list->next;
+        free(aux);
+        aux = NULL;
+    }
+    return list;
+}
+
+// Função para remover da direita (final)
+NodeType* removeRight(NodeType *list) {
+    if (list == NULL) {
+        printf("\nVazia!\n");
+    } else {
+        if (list->next == NULL) {
+            free(list);
+            list = NULL;
+        } else {
+            NodeType *aux = list;
+            while (aux->next->next != NULL) {
+                aux = aux->next;
+            }
+            NodeType *toRemove = aux->next;
+            free(toRemove);
+            toRemove = NULL;
+            aux->next = NULL;
+        }
+    }
+    return list;
+}
+
+// Função para exibir a lista
+void display(NodeType *list) {
+    printf("\n---Lista atual---\n");
+    if (list == NULL) {
+        printf("\nVazia!\n");
+    } else {
+        NodeType *aux = list;
+        while (aux != NULL) {
+            printf("[%d] ", aux->item);
+            aux = aux->next;
+        }
+    }
+}
+
+// Função para pesquisar um valor
+void search(int value, NodeType *list) {
+    int count = 0;
+    NodeType *aux = list;
+    while (aux != NULL) {
+        if (aux->item == value) {
+            count++;
+        }
+        aux = aux->next;
+    }
+    printf("\nHouve %d ocorrencia(s) do valor %d\n", count, value);
+}
+
+int main() {
+    int option = -1;
+    int value = 0;
+    NodeType *list = NULL;
+
+    while (option != 0) {
+        display(list);
+        value = 0;
+
+        printf("\n\n-----DIGITE 0 PARA SAIR-----\n\n");
+        printf("1: Inserir no inicio\n");
+        printf("2: Inserir no final\n");
+        printf("3: Remover no inicio\n");
+        printf("4: Remover no final\n");
+        printf("5: Pesquisar\n");
+
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                printf("Digite um valor\n");
+                scanf("%d", &value);
+                list = insertLeft(value, list);
+                break;
+
+            case 2:
+                printf("Digite um valor\n");
+                scanf("%d", &value);
+                list = insertRight(value, list);
+                break;
+
+            case 3:
+                list = removeLeft(list);
+                break;
+
+            case 4:
+                list = removeRight(list);
+                break;
+
+            case 5:
+                printf("Digite um valor\n");
+                scanf("%d", &value);
+                search(value, list);
+                break;
+
+            default:
+                printf("Opcao invalida!\n");
+                break;
+        }
+    }
+    return 0;
+}
