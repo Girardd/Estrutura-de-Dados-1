@@ -1,3 +1,9 @@
+/*
+Autor: Vinícius Girard. 
+Uma lista encadeada é uma estrutura de dados dinâmica que consiste em nós, onde cada nó contém um valor e uma referência para o próximo nó na sequência. As funções createNode, insertLeft, insertRight, removeLeft, removeRight, display e search realizam operações com a lista encadeada.
+*/
+
+
 #include <stdlib.h>
 #include <stdio.h>
 
